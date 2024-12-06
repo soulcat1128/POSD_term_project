@@ -1,6 +1,7 @@
 package com.wangpeng.bms.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class BookFactory {
     public Book createBook(BookInfo bookInfo) {
@@ -16,5 +17,9 @@ public class BookFactory {
             default:
                 throw new IllegalArgumentException("Unknown material: " + material);
         }
+    }
+
+    public Book createBookSeries(String title, List<Book> books) {
+        return new BookSeries(title, books);
     }
 }

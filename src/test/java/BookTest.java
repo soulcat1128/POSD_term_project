@@ -3,6 +3,9 @@ import com.wangpeng.bms.model.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookTest {
 
     @Test
@@ -49,4 +52,30 @@ public class BookTest {
         assertEquals("audio", audioBook.getMaterial());
     }
 
+    @Test
+    public void testSeriesBook() {
+        BookFactory bookFactory = new BookFactory();
+        BookInfo bookInfo = new BookInfo();
+        bookInfo.setMaterial("paper");
+        bookInfo.setPageCount(100);
+        Book book1 = bookFactory.createBook(bookInfo);
+        bookInfo.setMaterial("digital");
+        bookInfo.setFileSize(100);
+        Book book2 = bookFactory.createBook(bookInfo);
+        bookInfo.setMaterial("audio");
+        bookInfo.setNarrator("narrator");
+        bookInfo.setDuration(100);
+        Book book3 = bookFactory.createBook(bookInfo);
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+        books.add(book3);
+        Book book = bookFactory.createBookSeries("series", books);
+        assertTrue(book instanceof BookSeries);
+        BookSeries bookSeries = (BookSeries) book;
+        assertEquals("series", bookSeries.getTitle());
+        assertEquals(book1, bookSeries.books.get(0));
+        assertEquals(book2, bookSeries.books.get(1));
+        assertEquals(book3, bookSeries.books.get(2));
+    }
 }

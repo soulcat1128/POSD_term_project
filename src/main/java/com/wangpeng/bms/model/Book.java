@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 public abstract class Book {
     public BookInfo bookInfo;
 
+    public Book() {}
+
     public Book(BookInfo bookInfo) {
         this.bookInfo = bookInfo;
     }
@@ -38,4 +40,8 @@ public abstract class Book {
     }
 
     abstract public String getMaterial();
+
+    public void add(Book book) {
+        throw new UnsupportedOperationException("does not support this operation.");
+    }
 }
