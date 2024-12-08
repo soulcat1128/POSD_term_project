@@ -22,10 +22,8 @@ public class UserController {
     @RequestMapping(value = "/login")
     public Map<String, Object> login(@RequestBody User user) {
         // 登录
-        System.out.println("接收到的 User: " + user);
         User userObj = userService.login(user);
         if(userObj == null) {   // 账号或密码错误
-            // System.out.println(userObj);
             // 返回结果对象
             return MyResult.getResultMap(420, "账号或密码错误");
         } else {    // 账号密码正确
