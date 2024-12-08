@@ -78,4 +78,5 @@ public class BookTest {
         assertEquals(book2, bookSeries.books.get(1));
         assertEquals(book3, bookSeries.books.get(2));
     }
+
 }
